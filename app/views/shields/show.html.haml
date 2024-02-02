@@ -1,0 +1,11 @@
+%div.max-w-4xl.mx-auto.mt-8
+  %h1.text-2xl.font-bold.text-center
+    %b Libelle:
+    = @shield.name
+  %div.mt-4
+    %p.text-lg
+      %b Defense Bonus:
+      = @shield.defense_bonus
+  %div.mt-6.flex.justify-center
+    = link_to 'Edit', edit_shield_path(@shield), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+    = link_to 'Back to Shields', shields_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"

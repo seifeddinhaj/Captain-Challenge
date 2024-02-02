@@ -1,0 +1,19 @@
+%div.mt-8.max-w-4xl.mx-auto
+  %h1.text-2xl.font-bold.text-center Boucliers List
+  = link_to 'Ajouter', new_shield_path, class: "mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+
+  %table.mt-4.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+    %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
+      %tr
+        %th.px-6.py-3 Libelle
+        %th.px-6.py-3 Defense Bonus
+        %th.px-6.py-3 Actions
+    %tbody
+      - @shields.each do |shield|
+        %tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
+          %td.px-6.py-4= shield.name
+          %td.px-6.py-4= shield.defense_bonus
+          %td.px-6.py-4
+            = link_to 'Voir', shield, class: "text-blue-600 hover:text-blue-900 mr-2"
+            = link_to 'Modifier', edit_shield_path(shield), class: "text-blue-600 hover:text-blue-900 mr-2"
+            = link_to 'Supprimer', shield, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-600 hover:text-red-900"

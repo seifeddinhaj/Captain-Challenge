@@ -1,0 +1,19 @@
+= form_with(model: @shield, local: true, class: "max-w-xl mx-auto mt-8") do |form|
+  - if @shield.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@shield.errors.count, "error") + " prohibited this shield from being saved:"
+      %ul
+        - @shield.errors.full_messages.each do |message|
+          %li= message
+
+  .field.mb-6
+    = form.label "Libelle", class: "block text-sm font-bold mb-2"
+    = form.text_field :name, class: "w-full px-3 py-2 border rounded"
+
+  .field.mb-6
+    = form.label :defense_bonus, class: "block text-sm font-bold mb-2"
+    = form.number_field :defense_bonus, class: "w-full px-3 py-2 border rounded"
+
+  .actions
+    = form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
