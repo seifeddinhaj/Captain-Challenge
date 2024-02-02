@@ -1,30 +1,41 @@
 .container
-  = form_with(model: @character, local: true) do |form|
+  = form_with(model: @character, local: true, html: {class: "space-y-12"}) do |form|
     - if @character.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@character.errors.count, "error")} prohibited this character from being saved:"
+      #error_explanation{class: "border-b border-gray-900/10 pb-12"}
+        %h2.text-base.font-semibold.leading-7.text-gray-900
+          = pluralize(@character.errors.count, "error") + " prohibited this character from being saved:"
         %ul
           - @character.errors.full_messages.each do |message|
             %li= message
-    .mb-3
-      = form.label :Nom, class: "form-label"
-      = form.text_field :name, class: "form-control"
 
-    .mb-3
-      = form.label :"Points de vie", class: "form-label"
-      = form.number_field :life_points, class: "form-control"
+    .border-b.border-gray-900.border-opacity-10.pb-12
+      .mt-10.grid.grid-cols-1.gap-x-6.gap-y-8{class: "sm:grid-cols-6"}
+        %div{class: "sm:col-span-4"}
+          = form.label :name, "Username", class: "block text-sm font-medium leading-6 text-gray-900"
+          .mt-2
+            .flex.rounded-md.shadow-sm.ring-1.ring-inset.ring-gray-300{class: "sm:max-w-md focus:ring-2 focus:ring-indigo-600"}
+              %span.flex.select-none.items-center.pl-3.text-gray-500{class: "sm:text-sm"}
+              = form.text_field :name, class: "block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder-gray-400 focus:ring-0 sm:text-sm", placeholder: "janesmith"
+        %div{class: "sm:col-span-4"}
+          = form.label :attack_points, "Points d'attaques", class: "block text-sm font-medium leading-6 text-gray-900"
+          .mt-2
+            .flex.rounded-md.shadow-sm.ring-1.ring-inset.ring-gray-300{class: "sm:max-w-md focus:ring-2 focus:ring-indigo-600"}
+              %span.flex.select-none.items-center.pl-3.text-gray-500{class: "sm:text-sm"}
+              = form.number_field :name, class: "block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder-gray-400 focus:ring-0 sm:text-sm", placeholder: "janesmith"
+        %div{class: "sm:col-span-4"}
+          = form.label :life_points, "Points de vie", class: "block text-sm font-medium leading-6 text-gray-900"
+          .mt-2
+            .flex.rounded-md.shadow-sm.ring-1.ring-inset.ring-gray-300{class: "sm:max-w-md focus:ring-2 focus:ring-indigo-600"}
+              %span.flex.select-none.items-center.pl-3.text-gray-500{class: "sm:text-sm"}
+              = form.number_field :life_points, class: "block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder-gray-400 focus:ring-0 sm:text-sm", placeholder: "janesmith"
 
-    .mb-3
-      = form.label :"Points d'attaques", class: "form-label"
-      = form.number_field :attack_points, class: "form-control"
+        .col-span-full
+          = form.label :avatar, "Photo", class: "block text-sm font-medium leading-6 text-gray-900"
+          .mt-2.flex.items-center.gap-x-3
+            = form.file_field :avatar, class: "rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1.ring-inset.ring-gray-300 hover:bg-gray-50"
+            - if @character.avatar.attached?
+              = image_tag @character.avatar, class: 'h-12 w-12'
 
-    .mb-3
-      = form.label :avatar, class: "form-label"
-      = form.file_field :avatar, class: "form-control"
-      - if @character.avatar.attached?
-        = image_tag @character.avatar, class: 'avatar-image img-thumbnail', width: '32', height: '32'
+        = form.submit 'Valider', class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
-    .mb-3
-      = form.submit 'Valider', class: "btn btn-primary"
 
-  = link_to 'Retour', characters_path, class: "btn btn-secondary"

@@ -1,40 +1,33 @@
-.container
-  %h1 Liste des personnes
-  %table.table.table-striped
-    %thead
+.container.flex.flex-col
+  .flex.justify-end.mb-4.mt-5
+    = link_to 'Nouveau personnage', new_character_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+  %h1.text-xl.font-semibold.mb-4 Liste des personnes
+  %table.w-full.text-left.shadow-lg
+    %thead.bg-gray-100
       %tr
-        %th{ scope: "col" } #
-        %th{ scope: "col" } Nom
-        %th{ scope: "col" } Points de vie
-        %th{ scope: "col" } Points d'attaque
-        %th{ scope: "col" } Points d'expérience
-        %th{ scope: "col" } Avatar
-        %th Actions
-
-
+        %th.px-4.py-2 #
+        %th.px-4.py-2 Nom
+        %th.px-4.py-2 Points de vie
+        %th.px-4.py-2 Points d'attaque
+        %th.px-4.py-2 Points d'expérience
+        %th.px-4.py-2 Avatar
+        %th.px-4.py-2 Actions
     %tbody
       - @characters.each do |character|
-        %tr
-          %th{ scope: "row" }
-            = character.id
-          %td
-            = character.name
-          %td
-            = character.life_points
-          %td
-            = character.attack_points
-          %td
-            -# = character.exp
-          %td
+        %tr.border-b
+          %th.px-4.py-2.scope= character.id
+          %td.px-4.py-2= character.name
+          %td.px-4.py-2= character.life_points
+          %td.px-4.py-2= character.attack_points
+          %td.px-4.py-2
+            -# Placeholder for character.exp if exists
+          %td.px-4.py-2
             - if character.avatar.attached?
-              = image_tag character.avatar, class: 'avatar-image img-thumbnail', width: '32', height: '32'
+              = image_tag character.avatar, class: 'w-8 h-8 rounded-full', width: '32', height: '32'
             - else
-              = image_tag 'default_image.png', class: 'avatar-image img-thumbnail', width: '32', height: '32'
-
-          %td
-            = link_to 'Voir', character, class: 'btn btn-primary'
-            = link_to 'Modifier', edit_character_path(character), class: 'btn btn-secondary'
-            = form_with(model: character, method: :delete, data: { confirm: 'Are you sure?' }, class: 'd-inline') do |form|
-              = form.submit 'Supprimer', class: 'btn btn-danger'
-
-  = link_to 'Nouveau personnage', new_character_path, class: "btn btn-success"
+              = image_tag 'default_image.png', class: 'w-8 h-8 rounded-full', width: '32', height: '32'
+          %td.px-4.py-2.flex.space-x-2
+            = link_to 'Voir', character, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs flex items-center justify-center'
+            = link_to 'Modifier', edit_character_path(character), class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded text-xs flex items-center justify-center'
+            = form_with(model: character, method: :delete, data: { confirm: 'Are you sure?' }) do |form|
+              = form.submit 'Supprimer', class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs flex items-center justify-center'
