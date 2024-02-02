@@ -1,0 +1,30 @@
+.container
+  = form_with(model: @character, local: true) do |form|
+    - if @character.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@character.errors.count, "error")} prohibited this character from being saved:"
+        %ul
+          - @character.errors.full_messages.each do |message|
+            %li= message
+    .mb-3
+      = form.label :Nom, class: "form-label"
+      = form.text_field :name, class: "form-control"
+
+    .mb-3
+      = form.label :"Points de vie", class: "form-label"
+      = form.number_field :life_points, class: "form-control"
+
+    .mb-3
+      = form.label :"Points d'attaques", class: "form-label"
+      = form.number_field :attack_points, class: "form-control"
+
+    .mb-3
+      = form.label :avatar, class: "form-label"
+      = form.file_field :avatar, class: "form-control"
+      - if @character.avatar.attached?
+        = image_tag @character.avatar, class: 'avatar-image img-thumbnail', width: '32', height: '32'
+
+    .mb-3
+      = form.submit 'Valider', class: "btn btn-primary"
+
+  = link_to 'Retour', characters_path, class: "btn btn-secondary"

@@ -1,0 +1,30 @@
+.container
+  %p#notice= notice
+  .row
+    .col-md-4
+      %h6 Name:
+      %p= @character.name
+  .row
+    .col-md-4
+      %h6 Points de vie:
+      %p= @character.life_points
+
+  .row
+    .col-md-4
+      %h6 Points d'attaque:
+      %p= @character.attack_points
+  -# .row
+  -#   .col-md-4
+  -#     %h6 Points d'expérience:
+  -#     %p= @character.exp
+  .row
+    .col-md-4
+      %h6 Avatar:
+      - if @character.avatar.attached?
+        = image_tag @character.avatar, class: 'avatar-image img-thumbnail', width: '80', height: '80'
+      - else
+        = image_tag 'default_image.png', class: 'avatar-image img-thumbnail', width: '80', height: '80'
+  .row
+    .col-md-6
+      = link_to 'Edit', edit_character_path(@character), class: 'btn btn-primary'
+      = link_to 'Back', characters_path, class: 'btn btn-secondary'
