@@ -1,7 +1,7 @@
 .container.mx-auto.mt-10
-  %h1.text-3xl.font-bold.text-center.mb-10 Select Fighters
-
-
+  %h1.text-3xl.font-bold.text-center.mb-10 Arène
+  %p.text-xl.text-center.mb-4 Bienvenue dans l'Arène des Champions, où les braves s'affrontent pour la gloire et l'honneur.
+  %p.text-lg.text-center.mb-8 Préparez-vous à choisir vos combattants et à les mener à la victoire dans des duels épiques qui resteront gravés dans l'histoire.
   = form_with model: @battle, local: true, html: {class: "space-y-12"} do |form|
     - if @battle.errors.any?
       #error_explanation{class: "border-b border-gray-900/10 pb-12"}
@@ -16,25 +16,25 @@
         %h2.text-2xl.font-bold.text-center.mb-4 Fighter 1
         .mb-4
           %label.block.text-sm.font-medium.text-gray-700 Character 1
-          = form.collection_select :character1_id, @characters, :id, :name, {prompt: "Select Character 1"}, {required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
+          = form.collection_select :character1_id, @characters, :id, :name, {prompt: "Selectionner Character 1"}, {required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
         .mb-4
-          %label.block.text-sm.font-medium.text-gray-700 Character 1's Weapon
-          = form.select "weapon1_id", options_from_collection_for_select(@weapons, :id, :name), prompt: "Select Weapon", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
+          %label.block.text-sm.font-medium.text-gray-700 Character 1 Arme
+          = form.select "weapon1_id", options_from_collection_for_select(@weapons, :id, :name), prompt: "Selectionner Arme", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
         .mb-4
-          %label.block.text-sm.font-medium.text-gray-700 Character 1's Shield
-          = form.select "shield1_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Select Shield", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
+          %label.block.text-sm.font-medium.text-gray-700 Character 1 Bouclier
+          = form.select "shield1_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Selectionner Bouclier", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
 
       .card
         %h2.text-2xl.font-bold.text-center.mb-4 Fighter 2
         .mb-4
           %label.block.text-sm.font-medium.text-gray-700 Character 2
-          = form.collection_select :character2_id, @characters, :id, :name,{prompt: "Select Character 2"},{required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
+          = form.collection_select :character2_id, @characters, :id, :name,{prompt: "Selectionner Character 2"},{required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
         .mb-4
-          %label.block.text-sm.font-medium.text-gray-700 Character 2's Weapon
-          = form.select "weapon2_id", options_from_collection_for_select(@weapons, :id, :name), prompt: "Select Weapon", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
+          %label.block.text-sm.font-medium.text-gray-700 Character 2 Arme
+          = form.select "weapon2_id", options_from_collection_for_select(@weapons, :id, :name), prompt: "Selectionner Arme", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
         .mb-4
-          %label.block.text-sm.font-medium.text-gray-700 Character 2's Shield
-          = form.select "shield2_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Select Shield", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
+          %label.block.text-sm.font-medium.text-gray-700 Character 2 Bouclier
+          = form.select "shield2_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Selectionner Bouclier", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
 
     %button.bg-indigo-600.hover:bg-indigo-700.text-white.font-bold.py-2.px-4.rounded.focus:outline-none.focus:shadow-outline.mt-4{ type: "submit" }
       Start Battle

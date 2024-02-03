@@ -3,6 +3,7 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
 .card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden;
+  @apply bg-white rounded-lg shadow-2xl overflow-hidden p-4 text-center justify-center items-center;
 }

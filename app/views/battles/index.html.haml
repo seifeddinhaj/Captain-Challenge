@@ -11,6 +11,9 @@
           %th.px-6.py-3 Character 2
           %th.px-6.py-3 Winner
           %th.px-6.py-3 Loser
+          %th.px-6.py-3 Action
+
+
       %tbody.bg-white.divide-y.divide-gray-300
         - @battles.each do |battle|
           %tr.hover:bg-gray-100
@@ -18,3 +21,5 @@
             %td.px-6.py-4= battle.character2.name
             %td.px-6.py-4.font-bold.text-green-600= battle.winner.name
             %td.px-6.py-4.font-bold.text-red-600= battle.loser.name
+            %td.px-6.py-4.flex.space-x-2
+              = link_to 'Voir', battle, class: "text-blue-600 hover:text-blue-900"
