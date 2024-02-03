@@ -7,8 +7,7 @@ class CharactersController < ApplicationController
   end
 
   def index
-    @characters = Character.all
-    render 'characters/index'
+    @characters = Character.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show; end

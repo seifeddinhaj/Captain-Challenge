@@ -4,7 +4,7 @@ class WeaponsController < ApplicationController
 
   # GET /weapons
   def index
-    @weapons = Weapon.all
+    @weapons = Weapon.all.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /weapons/1

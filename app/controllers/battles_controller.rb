@@ -3,7 +3,7 @@ class BattlesController < ApplicationController
   before_action :set_battle, only: %I[show]
 
   def index
-    @battles = Battle.all.order(created_at: :desc)
+    @battles = Battle.order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def new

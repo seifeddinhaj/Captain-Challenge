@@ -23,3 +23,5 @@
             %td.px-6.py-4.font-bold.text-red-600= battle.loser.name
             %td.px-6.py-4.flex.space-x-2
               = link_to 'Voir', battle, class: "text-blue-600 hover:text-blue-900"
+%div.flex.justify-center.mt-4
+  = tailwind_paginate @battles

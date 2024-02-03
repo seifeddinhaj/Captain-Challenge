@@ -23,3 +23,5 @@
             = link_to 'Voir', character, class: "text-blue-600 hover:text-blue-900"
             = link_to 'Modifier', edit_character_path(character), class: "text-blue-600 hover:text-blue-900"
             = link_to 'Supprimer', character, method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-600 hover:text-red-900"
+%div.flex.justify-center.mt-4
+  = tailwind_paginate @characters

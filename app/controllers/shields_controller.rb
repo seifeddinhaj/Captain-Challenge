@@ -3,7 +3,7 @@ class ShieldsController < ApplicationController
   before_action :set_shield, only: [:show, :edit, :update, :destroy]
 
   def index
-    @shields = Shield.all
+    @shields = Shield.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show; end
