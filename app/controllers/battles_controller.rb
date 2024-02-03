@@ -7,24 +7,24 @@ class BattlesController < ApplicationController
   end
 
   def new
-    @characters = Character.all
-    @weapons = Weapon.all
-    @shields = Shield.all
+    set_form_variables
     @battle = Battle.new
   end
 
   def create
     @battle = Battle.new(battle_params)
-    set_equipments_for_characters
-    battle_service = BattleService.new(@character1, @character2, @battle)
-    @battle.winner, @battle.loser = battle_service.fight
-    # Ajoutez ici votre logique pour déterminer le gagnant et le perdant
-    if @battle.save
-      redirect_to @battle, notice: "Le Gagnant est #{@battle.winner.name} et voilà le récapitulatif de la partie"
+    if @battle.valid?
+      set_equipments_for_characters
+      battle_service = BattleService.new(@character1, @character2, @battle)
+      @battle.winner, @battle.loser = battle_service.fight
+      if @battle.save
+        redirect_to @battle, notice: "Le Gagnant est #{@battle.winner.name}."
+      else
+        set_form_variables
+        render :new
+      end
     else
-      @characters = Character.all
-      @weapons = Weapon.all
-      @shields = Shield.all
+      set_form_variables
       render :new
     end
   end
@@ -32,6 +32,13 @@ class BattlesController < ApplicationController
   def show; end
 
   private
+
+  def set_form_variables
+    @characters = Character.all
+    @weapons = Weapon.all
+    @shields = Shield.all
+  end
+
   def set_battle
     @battle = Battle.find(params[:id])
   end
@@ -43,7 +50,7 @@ class BattlesController < ApplicationController
   def set_equipments_for_characters
     @character1 = Character.find(battle_params[:character1_id])
     @character2 = Character.find(battle_params[:character2_id])
-    @character1.update(shield_id: params[:shield1_id], weapon: params[:weapon1_id])
-    @character2.update(shield_id: params[:shield2_id], weapon: params[:weapon2_id])
+    @character1.update(shield_id: params[:battle][:shield1_id], weapon_id: params[:battle][:weapon1_id])
+    @character2.update(shield_id: params[:battle][:shield2_id], weapon_id: params[:battle][:weapon2_id])
   end
 end
