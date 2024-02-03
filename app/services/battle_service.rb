@@ -14,6 +14,11 @@ class BattleService
 
   private
 
+  def conclude_battle(winner, loser)
+    winner.increment!(:experience, 3)
+    loser.increment!(:experience, 1)
+  end
+
   def log_initial_state
     add_actions("État initial (points de vie) : Joueur1: #{@character1.life_points}, Joueur2: #{@character2.life_points}")
   end
@@ -45,6 +50,7 @@ class BattleService
   def find_winner
     winner, loser = [@character1, @character2].partition { |character| character.life_points.positive? }.flatten
     add_actions("Le gagnant est #{winner.name}")
+    conclude_battle(winner, loser)
     [winner, loser]
   end
 

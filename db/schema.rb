@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_03_191135) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_03_203001) do
   create_table "actions", force: :cascade do |t|
     t.string "description"
     t.integer "battle_id", null: false
@@ -64,6 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_03_191135) do
     t.datetime "updated_at", null: false
     t.integer "weapon_id"
     t.integer "shield_id"
+    t.integer "experience", default: 0
+    t.integer "level", default: 1
     t.index ["shield_id"], name: "index_characters_on_shield_id"
     t.index ["weapon_id"], name: "index_characters_on_weapon_id"
   end
