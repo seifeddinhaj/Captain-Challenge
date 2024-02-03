@@ -11,11 +11,9 @@ class CharactersController < ApplicationController
     render 'characters/index'
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|

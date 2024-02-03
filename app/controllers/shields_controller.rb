@@ -6,15 +6,13 @@ class ShieldsController < ApplicationController
     @shields = Shield.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @shield = Shield.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @shield = Shield.new(shield_params)
