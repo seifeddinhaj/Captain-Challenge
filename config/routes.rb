@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :characters
   resources :weapons
   resources :shields
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :battles, only: %I[new create index]
 
-  root 'pages#index'
+  root 'battles#new'
 end

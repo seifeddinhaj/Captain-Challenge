@@ -1,0 +1,20 @@
+%div.mx-auto.max-w-4xl.mt-10
+  %p#notice.text-center.text-green-500.font-bold= notice
+
+  %h1.text-3xl.font-bold.text-center.mb-10 Historique de l'Aréne
+
+  %div.overflow-x-auto
+    %table.w-full.text-sm.text-left.text-gray-500
+      %thead.text-xs.text-gray-700.uppercase.bg-gray-50
+        %tr
+          %th.px-6.py-3 Character 1
+          %th.px-6.py-3 Character 2
+          %th.px-6.py-3 Winner
+          %th.px-6.py-3 Loser
+      %tbody.bg-white.divide-y.divide-gray-300
+        - @battles.each do |battle|
+          %tr.hover:bg-gray-100
+            %td.px-6.py-4= battle.character1.name
+            %td.px-6.py-4= battle.character2.name
+            %td.px-6.py-4.font-bold.text-green-600= battle.winner.name
+            %td.px-6.py-4.font-bold.text-red-600= battle.loser.name

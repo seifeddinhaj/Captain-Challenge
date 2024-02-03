@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class WeaponsController < ApplicationController
   before_action :set_weapon, only: [:show, :edit, :update, :destroy]
 
@@ -7,8 +8,7 @@ class WeaponsController < ApplicationController
   end
 
   # GET /weapons/1
-  def show
-  end
+  def show; end
 
   # GET /weapons/new
   def new
@@ -16,8 +16,7 @@ class WeaponsController < ApplicationController
   end
 
   # GET /weapons/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /weapons
   def create
@@ -46,13 +45,13 @@ class WeaponsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_weapon
-      @weapon = Weapon.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def weapon_params
-      params.require(:weapon).permit(:name, :attack_bonus)
-    end
+  def set_weapon
+    @weapon = Weapon.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def weapon_params
+    params.require(:weapon).permit(:name, :attack_bonus)
+  end
 end
