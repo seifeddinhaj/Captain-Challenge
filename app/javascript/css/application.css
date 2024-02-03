@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
