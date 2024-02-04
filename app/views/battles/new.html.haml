@@ -1,4 +1,4 @@
-.container.mx-auto.mt-10.battles-new-background
+.container.mx-auto.pt-10.battles-new-background
   %h1.text-3xl.font-bold.text-center.mb-10 Arène
   %p.text-xl.text-center.mb-4 Bienvenue dans l'Arène des Champions, où les braves s'affrontent pour la gloire et l'honneur.
   %p.text-lg.text-center.mb-8 Préparez-vous à choisir vos combattants et à les mener à la victoire dans des duels épiques qui resteront gravés dans l'histoire.
@@ -12,8 +12,8 @@
             %li= message
 
     .grid.grid-cols-1.md:grid-cols-2.gap-10
-      .card
-        %h2.text-2xl.font-bold.text-center.mb-4 Fighter 1
+      .card.transparent-bg.ml-auto
+        %h2.text-2xl.font-bold.text-center.mb-4 Combattant 1
         .mb-4
           %label.block.text-sm.font-medium.text-gray-700 Character 1
           = form.collection_select :character1_id, @characters, :id, :name, {prompt: "Selectionner Character 1"}, {required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
@@ -24,8 +24,8 @@
           %label.block.text-sm.font-medium.text-gray-700 Character 1 Bouclier
           = form.select "shield1_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Selectionner Bouclier", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
 
-      .card
-        %h2.text-2xl.font-bold.text-center.mb-4 Fighter 2
+      .card.transparent-bg.mr-auto
+        %h2.text-2xl.font-bold.text-center.mb-4 Combattant 2
         .mb-4
           %label.block.text-sm.font-medium.text-gray-700 Character 2
           = form.collection_select :character2_id, @characters, :id, :name,{prompt: "Selectionner Character 2"},{required: true, class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"}
@@ -35,6 +35,6 @@
         .mb-4
           %label.block.text-sm.font-medium.text-gray-700 Character 2 Bouclier
           = form.select "shield2_id", options_from_collection_for_select(@shields, :id, :name), prompt: "Selectionner Bouclier", class: "mt-1.block.w-full.pl-3.pr-10.py-2.text-base.border-gray-300.focus:outline-none.focus:ring-indigo-500.focus:border-indigo-500.sm:text-sm.rounded-md"
-
-    %button.bg-indigo-600.hover:bg-indigo-700.text-white.font-bold.py-2.px-4.rounded.focus:outline-none.focus:shadow-outline.mt-4{ type: "submit" }
-      Start Battle
+    .flex.justify-center
+      %button.border-2.transparent-bg.hover:bg-indigo-700.text-gray-900.font-bold.py-2.px-4.rounded.focus:outline-none.focus:shadow-outline.mt-4{ type: "submit" }
+        Commencer Combat
