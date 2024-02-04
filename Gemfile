@@ -49,8 +49,12 @@ group :development do
 end
 
 group :test do
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
+gem 'faker','~> 3.2.3'
 gem 'will_paginate'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
