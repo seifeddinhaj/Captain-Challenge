@@ -11,6 +11,8 @@
         %th.px-6.py-3 Points d'attaque
         %th.px-6.py-3 Points d'experience
         %th.px-6.py-3 Niveau
+        %th.px-6.py-3 Total combats
+        %th.px-6.py-3 Taux de victoire
         %th.px-6.py-3 Actions
     %tbody
       - @characters.each do |character|
@@ -27,6 +29,8 @@
           %td.px-6.py-4= character.attack_points
           %td.px-6.py-4= character.experience
           %td.px-6.py-4= character.level
+          %td.px-6.py-4= character.total_battles
+          %td.px-6.py-4= "#{ character.victory_rate }%"
           %td.px-6.py-4.flex.space-x-2
             = link_to 'Voir', character, class: "text-blue-600 hover:text-blue-900"
             = link_to 'Modifier', edit_character_path(character), class: "text-blue-600 hover:text-blue-900"

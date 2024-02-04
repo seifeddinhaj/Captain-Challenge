@@ -4,6 +4,11 @@ class Character < ApplicationRecord
   belongs_to :shield, optional: true
   belongs_to :weapon, optional: true
 
+  has_many :battles_as_character1, class_name: 'Battle', foreign_key: 'character1_id'
+  has_many :battles_as_character2, class_name: 'Battle', foreign_key: 'character2_id'
+
+  has_many :battles_won, class_name: 'Battle', foreign_key: 'winner_id'
+
   # Validations
   # Assurez-vous que life_points est un nombre entre 10 et 100
   validates :life_points, numericality: { greater_than_or_equal_to: 10, less_than_or_equal_to: 100 }
@@ -36,4 +41,14 @@ class Character < ApplicationRecord
     self.life_points -= reduced_damage.round
   end
 
+  def total_battles
+    battles_as_character1.count + battles_as_character2.count
+  end
+
+  def victory_rate
+    total = total_battles
+    return 0 if total.zero?
+
+    (battles_won.count.to_f / total * 100).round(2)
+  end
 end
