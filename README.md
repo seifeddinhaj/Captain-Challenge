@@ -164,7 +164,10 @@ Avant de commencer l'installation de ce projet, assurez-vous que vous avez les v
 
 - Ruby version 3.2.2
 - Rails version 7.0.7
-- node >= 18.0.0
+- node >= 16.0.0 si vous utiliser node version > 18 executer cette command
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
 
 ### Étape 1 : Cloner le dépôt
 
