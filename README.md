@@ -164,6 +164,7 @@ Avant de commencer l'installation de ce projet, assurez-vous que vous avez les v
 
 - Ruby version 3.2.2
 - Rails version 7.0.7
+- node >= 14.0.0
 
 ### Étape 1 : Cloner le dépôt
 
