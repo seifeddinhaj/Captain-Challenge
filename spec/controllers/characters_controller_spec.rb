@@ -21,12 +21,12 @@ RSpec.describe CharactersController, type: :controller do
     context 'with valid attributes' do
       it 'creates a new Character' do
         expect {
-          post :create, params: { character: FactoryBot.attributes_for(:character) }
+          post :create, params: { character: attributes_for(:character) }
         }.to change(Character, :count).by(1)
       end
 
       it 'redirects to the characters index' do
-        post :create, params: { character: FactoryBot.attributes_for(:character) }
+        post :create, params: { character: attributes_for(:character) }
         expect(response).to redirect_to characters_url
       end
     end
@@ -34,12 +34,12 @@ RSpec.describe CharactersController, type: :controller do
     context 'with invalid attributes' do
       it 'does not create a new Character' do
         expect {
-          post :create, params: { character: FactoryBot.attributes_for(:character, name: nil) }
+          post :create, params: { character: attributes_for(:character, life_points: 0) }
         }.not_to change(Character, :count)
       end
 
       it 're-renders the new template' do
-        post :create, params: { character: FactoryBot.attributes_for(:character, name: nil) }
+        post :create, params: { character: attributes_for(:character, life_points: 0) }
         expect(response).to render_template :new
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe CharactersController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested character to @character' do
-      character = FactoryBot.create(:character)
+      character = create(:character)
       get :show, params: { id: character.id }
       expect(assigns(:character)).to eq(character)
     end
@@ -55,7 +55,7 @@ RSpec.describe CharactersController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested character to @character for editing' do
-      character = FactoryBot.create(:character)
+      character = create(:character)
       get :edit, params: { id: character.id }
       expect(assigns(:character)).to eq(character)
     end
@@ -63,12 +63,12 @@ RSpec.describe CharactersController, type: :controller do
 
   describe 'PATCH #update' do
     before do
-      @character = FactoryBot.create(:character)
+      @character = create(:character)
     end
 
     context 'with valid attributes' do
       it 'updates the character and redirects' do
-        patch :update, params: { id: @character, character: FactoryBot.attributes_for(:character, name: 'Updated Name') }
+        patch :update, params: { id: @character, character: attributes_for(:character, name: 'Updated Name') }
         @character.reload
         expect(@character.name).to eq('Updated Name')
         expect(response).to redirect_to character_url(@character)
@@ -77,7 +77,7 @@ RSpec.describe CharactersController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not update the character and re-renders the edit template' do
-        patch :update, params: { id: @character, character: FactoryBot.attributes_for(:character, name: nil) }
+        patch :update, params: { id: @character, character: attributes_for(:character, life_points: 0) }
         expect(@character.name).not_to be_nil
         expect(response).to render_template :edit
       end
@@ -86,7 +86,7 @@ RSpec.describe CharactersController, type: :controller do
 
   describe 'DELETE #destroy' do
     before :each do
-      @character = FactoryBot.create(:character)
+      @character = create(:character)
     end
 
     it 'deletes the character and redirects to index' do
