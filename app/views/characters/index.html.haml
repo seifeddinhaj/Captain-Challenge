@@ -5,6 +5,7 @@
   %table.mt-4.w-full.text-sm.text-left.text-gray-500
     %thead.text-xs.text-gray-700.uppercase.bg-gray-50
       %tr
+        %th.px-6.py-3 #
         %th.px-6.py-3 Nom
         %th.px-6.py-3 Points de vie
         %th.px-6.py-3 Points d'attaque
@@ -14,6 +15,13 @@
     %tbody
       - @characters.each do |character|
         %tr.bg-white.border-b.hover:bg-gray-50
+        %td.px-6.py-4
+          .w-full{class:".md:w-1/4"}
+            - if character.avatar.attached?
+              = image_tag character.avatar, class: 'w-20 h-15 rounded-full object-cover', width: '80', height: '80'
+            - else
+              = image_tag 'default_image.png', class: 'w-20 h-20 rounded-full object-cover', width: '80', height: '80'
+
           %td.px-6.py-4= character.name
           %td.px-6.py-4= character.life_points
           %td.px-6.py-4= character.attack_points
